@@ -93,6 +93,7 @@ int main(){
             int next_i = robot.i-1;
             int next_j = robot.j;
             DFS(next_i,next_j);
+            if(flag==0)bt_remain--;
         }
         //cout<<isdirty()<<"\n";
         if(robot.j+1<cols && map[robot.i][robot.j+1].isclean==false){
@@ -102,6 +103,7 @@ int main(){
             int next_i = robot.i;
             int next_j = robot.j+1;
             DFS(next_i,next_j);
+            if(flag==0)bt_remain--;
         }
         if(robot.i+1<rows && map[robot.i+1][robot.j].isclean==false){
             flag = 0;
@@ -110,6 +112,7 @@ int main(){
             int next_i = robot.i+1;
             int next_j = robot.j;
             DFS(next_i,next_j);
+            if(flag==0)bt_remain--;
         }
         //cout<<"finish0";
         if(robot.j-1>=0 && map[robot.i][robot.j-1].isclean==false){
@@ -119,14 +122,18 @@ int main(){
             int next_i = robot.i;
             int next_j = robot.j-1;
             DFS(next_i,next_j);
+            if(flag==0)bt_remain--;
         }
         show_map();
+        if(flag==0)path_order.push_back(charge);
         flag = 0;
         first_time_return = true;
-        if(!isdirty())break;
+        if(isdirty())break;
         ///找剩下的點
+        
     }
     cout<<"finish!\n";
+    cout<<"{remain="<<bt_remain<<"}\n";
     vector<point>::iterator i;
     for(i = path_order.begin();i != path_order.end();i++){
         cout<<"("<<(*i).row<<" "<<(*i).col<<") ";

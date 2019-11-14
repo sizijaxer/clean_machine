@@ -258,7 +258,7 @@ bool can_move(int si,int sj){
                 back_path_order.pop();
     }
     //cout<<"\n";
-    if(bt_remain<=steps) return false;
+    if(bt_remain<=steps+1) return false;
     else{
         real_back_path_order_tmp = real_back_path_order;
         real_back_path_order.clear();
